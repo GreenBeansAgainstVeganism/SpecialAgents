@@ -7,10 +7,13 @@
 
 This mod brings back some old friends from BTD5!
 
+All the special agents listed below are included as purchaseable towers and their pro versions are available as upgrades. Most of the stats have been kept as close as possible to how they were in the original game, but some tweaks have been made to ensure that all the agents are fun and useful.
+
 So far, the mod includes:
 - Angry Squirrel
 - Meerkat Spy
+- Tribal Turtle
 
-All the special agents listed above are included as purchaseable towers and their pro versions are available as upgrades. Most of the stats have been kept exactly as they were in the original game, but some tweaks have been made to ensure that all the agents are fun and useful.
+More agents may be added in the future. Beekeeper is, sadly, unlikely to be added because of their unique mechanics which would require significant effort to port over.
 
 [![Requires BTD6 Mod Helper](https://raw.githubusercontent.com/gurrenm3/BTD-Mod-Helper/master/banner.png)](https://github.com/gurrenm3/BTD-Mod-Helper#readme)
