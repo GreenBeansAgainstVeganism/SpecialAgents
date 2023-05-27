@@ -9,6 +9,7 @@ This mod brings back some old friends from BTD5!
 
 So far, the mod includes:
 - Angry Squirrel
+- Meerkat Spy
 
 All the special agents listed above are included as purchaseable towers and their pro versions are available as upgrades. Most of the stats have been kept exactly as they were in the original game, but some tweaks have been made to ensure that all the agents are fun and useful.
 

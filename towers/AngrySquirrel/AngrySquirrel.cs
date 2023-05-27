@@ -77,6 +77,7 @@ namespace SpecialAgents.towers.AngrySquirrel
     public override int Path => MIDDLE;
     public override int Tier => 1;
     public override int Cost => 800;
+    public override string Icon => "AngrySquirrel-010";
 
     public override string Description => "Anger Mismanagement! Despite counselling the squirrel agent is even angrier. He gets so worked up that every 50 acorns he goes berserk even if bloons haven't leaked.";
 
