@@ -31,17 +31,17 @@ using Il2CppAssets.Scripts.Models.Map;
 
 namespace SpecialAgents.towers.PortableLake
 {
-  class PortableLake : ModTower<SpecialAgentSet>
+  class Pontoon : ModTower<SpecialAgentSet>
   {
-    public override string BaseTower => TowerType.PortableLake;
+    public override string BaseTower => TowerType.Pontoon;
     public override int Cost => 1250;
 
     public override int TopPathUpgrades => 0;
     public override int MiddlePathUpgrades => 1;
     public override int BottomPathUpgrades => 0;
-    public override string Description => "Nowhere to float your boat? Smart monkeys know they can place a Portable Lake on land, allowing any water unit to be deployed within its waters.";
+    public override string Description => "Place almost any land tower on water with the Pontoon! Deploy the Pontoon on water, then place your land tower on top.";
 
-    public override string Icon => "PortableLake-000";
+    public override string Icon => "Pontoon-000";
 
     public override bool Use2DModel => true;
 
@@ -59,45 +59,29 @@ namespace SpecialAgents.towers.PortableLake
     }
   }
 
-  class PortableLakePro : ModUpgrade<PortableLake>
+  class PontoonPro : ModUpgrade<Pontoon>
   {
     public override int Path => MIDDLE;
     public override int Tier => 1;
     public override int Cost => 1000;
-    public override string Icon => "PortableLake-010";
+    public override string Icon => "Pontoon-010";
 
-    public override string Description => "Pro Upgrade - Sea Monster! New Activated Ability temporarily awakens the Sea Monster, which bashes nearby bloons, popping 5 layers and sometimes stunning them. Any water unit can be placed in the Lake.";
+    public override string Description => "Primo Pontoon! In addition to luxury fittings, the Primo Pontoon has an uplink to Monkey Town HQ, granting any attached tower a range bonus. Place on water then place your land tower on top.";
 
     public override void ApplyUpgrade(TowerModel towerModel)
     {
-      towerModel.range = 30f;
+      var rangebuff = Game.instance.model.GetTower(TowerType.MonkeyVillage, 0, 0, 0).GetBehavior<RangeSupportModel>().Duplicate();
 
-      var attack = Game.instance.model.GetTowerFromId("PatFusty").GetAttackModel().Duplicate();
-      attack.range = towerModel.range;
+      rangebuff.multiplier = 0.2f;
+      rangebuff.mutatorId = "PontoonPro-Range";
+      rangebuff.ApplyBuffIcon<PontoonProBuffIcon>();
 
-      var smash = attack.weapons[0].projectile.GetBehavior<CreateProjectileOnExhaustFractionModel>().projectile;
-      smash.pierce = 100f;
-      smash.radius = 12f;
-      smash.GetBehavior<DisplayModel>().scale = 1.5f;
-      smash.GetDamageModel().damage = 5f;
-      smash.GetBehavior<DamageModifierForTagModel>().damageAddative = 5f;
-      smash.AddBehavior(new DamageModifierForTagModel("DamageModifierForTagModel_Moabs", "Moabs", 1f, 10f, true, false));
-
-      var stun = Game.instance.model.GetTower("BombShooter", 5, 0, 0).GetAttackModel().weapons[0].projectile.GetBehavior<CreateProjectileOnContactModel>().projectile.GetBehavior<SlowModel>().Duplicate();
-
-      stun.lifespan = 0.4f;
-      smash.AddBehavior(stun);
-      smash.collisionPasses = new int[2] { -1, 0 };
-
-      var ability = Game.instance.model.GetTower("DartlingGunner", 0, 4, 0).GetAbility().Duplicate();
-
-      ability.GetBehavior<ActivateAttackModel>().attacks[0] = attack;
-      ability.GetBehavior<ActivateAttackModel>().lifespan = 5f;
-      ability.name = "AbilityModel_Tentacles";
-      ability.icon = GetSpriteReference("PortableLakePro-Portrait");
-      ability.cooldown = 25f;
-
-      towerModel.AddBehavior(ability);
+      towerModel.AddBehavior(rangebuff);
     }
+  }
+
+  class PontoonProBuffIcon : ModBuffIcon
+  {
+    public override string Icon => "PontoonPro-Portrait";
   }
 }
