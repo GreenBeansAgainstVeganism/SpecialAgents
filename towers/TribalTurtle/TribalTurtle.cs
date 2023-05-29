@@ -34,7 +34,7 @@ namespace SpecialAgents.towers.TribalTurtle
   class TribalTurtle : ModTower<SpecialAgentSet>
   {
     public override string BaseTower => TowerType.DartMonkey;
-    public override int Cost => 700;
+    public override int Cost => 720;
 
     public override int TopPathUpgrades => 0;
     public override int MiddlePathUpgrades => 1;
@@ -80,7 +80,7 @@ namespace SpecialAgents.towers.TribalTurtle
   {
     public override int Path => MIDDLE;
     public override int Tier => 1;
-    public override int Cost => 650;
+    public override int Cost => 675;
     public override string Icon => "TribalTurtle-010";
 
     public override string Description => "Elite level training allows the Turtle Pro to throw spear and coconut simultaneously for maximum bloon hurt. Coconuts do extra damage to ceramic bloons and can pop frozen and lead bloons.";

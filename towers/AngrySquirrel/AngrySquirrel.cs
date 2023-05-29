@@ -37,6 +37,10 @@ namespace SpecialAgents.towers.AngrySquirrel
     public override string Icon => "AngrySquirrel-000";
 
     public override bool Use2DModel => true;
+    public override string Get2DTexture(int[] tiers)
+    {
+      return "AngrySquirrel-000";
+    }
 
     public override void ModifyBaseTowerModel(TowerModel towerModel)
     {
@@ -76,8 +80,8 @@ namespace SpecialAgents.towers.AngrySquirrel
   {
     public override int Path => MIDDLE;
     public override int Tier => 1;
-    public override int Cost => 800;
-    public override string Icon => "AngrySquirrel-010";
+    public override int Cost => 900;
+    public override string Icon => "AngrySquirrel-RagePro";
 
     public override string Description => "Anger Mismanagement! Despite counselling the squirrel agent is even angrier. He gets so worked up that every 50 acorns he goes berserk even if bloons haven't leaked.";
 
@@ -86,6 +90,7 @@ namespace SpecialAgents.towers.AngrySquirrel
     {
       towerModel.GetAttackModel().weapons[0].rate *= 0.8f;
       towerModel.GetAbility().GetBehavior<ActivateAttackModel>().attacks[0].weapons[0].rate *= 0.8f;
+      towerModel.GetAbility().GetBehavior<SwitchDisplayModel>().display = new PrefabReference(GetDisplayGUID<RageDisplayPro>());
     }
 
   }
@@ -107,6 +112,15 @@ namespace SpecialAgents.towers.AngrySquirrel
     public override void ModifyDisplayNode(UnityDisplayNode node)
     {
       Set2DTexture(node, "AngrySquirrel-Rage");
+    }
+  }
+  class RageDisplayPro : ModDisplay
+  {
+    public override string BaseDisplay => Generic2dDisplay;
+
+    public override void ModifyDisplayNode(UnityDisplayNode node)
+    {
+      Set2DTexture(node, "AngrySquirrel-RagePro");
     }
   }
 

@@ -31,7 +31,7 @@ namespace SpecialAgents.towers.MeerkatSpy
   class MeerkatSpy : ModTower<SpecialAgentSet>
   {
     public override string BaseTower => TowerType.MonkeyVillage;
-    public override int Cost => 1250;
+    public override int Cost => 1300;
 
     public override int TopPathUpgrades => 0;
     public override int MiddlePathUpgrades => 1;
@@ -56,16 +56,18 @@ namespace SpecialAgents.towers.MeerkatSpy
   {
     public override int Path => MIDDLE;
     public override int Tier => 1;
-    public override int Cost => 1100;
+    public override int Cost => 1050;
     public override string Icon => "MeerkatSpy-010";
 
     public override string Description => "No longer weaponless, the Meerkat Spy Pro can now blast any single bloon into dust and put the hurt into MOAB-class bloons. Grants camo detection to all towers in his radius.";
 
     public override void ApplyUpgrade(TowerModel towerModel)
     {
+      towerModel.displayScale = 1.5f;
+
       var attack = Game.instance.model.GetTower("MonkeyVillage", 5, 0, 0).GetAttackModel("AttackModel_Attack_");
       attack.RemoveBehavior<DisplayModel>();
-      attack.range = 30f;
+      attack.range = 32f;
       attack.GetBehavior<RotateToTargetModel>().rotateTower = true;
 
       var laser = Game.instance.model.GetTowerFromId("Adora 10").GetAbilities().Find(a => a.name == "AbilityModel_BallOfLight").GetBehavior<AbilityCreateTowerModel>().towerModel.GetAttackModel().weapons[0].Duplicate();
