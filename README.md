@@ -14,6 +14,8 @@ So far, the mod includes:
 - Meerkat Spy
 - Tribal Turtle
 - Portable Lake
+- Pontoon
+- Banana Farmer
 
 More agents may be added in the future. Beekeeper is, sadly, unlikely to be added because of their unique mechanics which would require significant effort to port over.
 
